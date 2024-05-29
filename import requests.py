@@ -41,7 +41,7 @@ def get_url():
         data_filter = soup.find_all("a", class_="green-link-only-hover f-12 fw-600 ml-2 text-uppercase", string = "Экспорт")
         for idx, i in enumerate(data_filter):
             if idx in indices:
-                zip_url = "https://витрина.фрт.рф" + item.find("a").get("href")
+                zip_url = "https://витрина.фрт.рф" + i.get("href")
                 print(zip_url)
         
 
