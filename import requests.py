@@ -28,21 +28,14 @@ def get_url():
             data_name = i.text
             if data_name.startswith("Реестр домов по "):
                 indices.append(idx)
-                # data = i.find_next_sibling("div", class_ = "row mt-24")
-                # print(data)
-                # for j in data:
-                #     res = soup.find("a", class_="green-link-only-hover f-12 fw-600 ml-2 text-uppercase", string = "Экспорт")
-                #     print(res)
-        #for item in data:
-        #    zip_url = "https://витрина.фрт.рф" + item.find("a").get("href")
-            #download_zip(zip_url)
-        #    print(zip_url)
 
         data_filter = soup.find_all("a", class_="green-link-only-hover f-12 fw-600 ml-2 text-uppercase", string = "Экспорт")
+        
         for idx, i in enumerate(data_filter):
             if idx in indices:
                 zip_url = "https://витрина.фрт.рф" + i.get("href")
-                print(zip_url)
+                #print(zip_url)
+                download_zip(zip_url)
         
 
 def download_zip(url):
@@ -55,4 +48,5 @@ def download_zip(url):
     fzip.close() 
 
 get_url()
+
 print("Done!")
