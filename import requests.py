@@ -21,19 +21,29 @@ def get_url():
         soup = BeautifulSoup(response.text, features="lxml")
         #print(soup.prettify())
 
+        indices = []
         data_filter = soup.find_all("div", class_="lh-27 f-28 fw-500 mt-48")
-        for i in data_filter:
+
+        for idx, i in enumerate(data_filter):
             data_name = i.text
             if data_name.startswith("Реестр домов по "):
-                data = i.find_next_sibling("div", class_ = "row mt-24")
-                print(data)
-                for j in data:
-                    res = soup.find("a", class_="green-link-only-hover f-12 fw-600 ml-2 text-uppercase", string = "Экспорт")
-                    print(res)
+                indices.append(idx)
+                # data = i.find_next_sibling("div", class_ = "row mt-24")
+                # print(data)
+                # for j in data:
+                #     res = soup.find("a", class_="green-link-only-hover f-12 fw-600 ml-2 text-uppercase", string = "Экспорт")
+                #     print(res)
         #for item in data:
         #    zip_url = "https://витрина.фрт.рф" + item.find("a").get("href")
             #download_zip(zip_url)
         #    print(zip_url)
+
+        data_filter = soup.find_all("a", class_="green-link-only-hover f-12 fw-600 ml-2 text-uppercase", string = "Экспорт")
+        for idx, i in enumerate(data_filter):
+            if idx in indices:
+                zip_url = "https://витрина.фрт.рф" + item.find("a").get("href")
+                print(zip_url)
+        
 
 def download_zip(url):
     response = requests.get(url, headers=headers)
