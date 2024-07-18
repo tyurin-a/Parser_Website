@@ -43,7 +43,7 @@ def download_zip(url):
     file = tempfile.TemporaryFile()
     file.write(response.content)
     fzip = zipfile.ZipFile(file)
-    fzip.extractall(r"C:\Users\a.tyurin\Desktop\Results")
+    fzip.extractall(r"C:\Users\Артем\Desktop\Results")
     file.close()
     fzip.close() 
 
